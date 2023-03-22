@@ -63,8 +63,8 @@ public class Robot extends TimedRobot {
   private final RelativeEncoder elbow_encoder = elbow.getEncoder();
 
 
-  private final DriverController d_control = new DriverController(ControllerMap.DRIVER_PORT);
-  private final OperatorController o_control = new OperatorController(ControllerMap.OPERATOR_PORT);
+  public static final DriverController d_control = new DriverController(ControllerMap.DRIVER_PORT);
+  public static final OperatorController o_control = new OperatorController(ControllerMap.OPERATOR_PORT);
 
   private static final String kDefaultAuto = "Default";
   private static final String kMiddleAuto = "Middle";
@@ -153,70 +153,6 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
 
-    // Driving
-    m_robotDrive.arcadeDrive(d_control.getLeftY(), d_control.getRightX());
-  
-    // Intake
-    if(o_control.toggleLeftIntake()){
-      l_intake.set(DoubleSolenoid.Value.kForward);
-    }
-    if(o_control.toggleRightIntake()){
-      l_intake.set(DoubleSolenoid.Value.kReverse);
-    }
-
-    //// Arm & elbow
-    //if(
-    //  //shoulder_encoder.getPosition() <= RobotMap.SHOULDER_ENCODER_UPPER_LIMIT &&
-    //  o_control.getShoulderSpeed() > 0){
-
-    if(o_control.setArmUpBind()){
-      SetArmUP();
-    }
-    else if(o_control.setArmDownBind()){
-      SetArmDown();
-    }else{
-      elbow.set(o_control.getRightY() * -0.2);
-    }
-    //}
-    //else if(
-    //  //shoulder_encoder.getPosition() >= RobotMap.SHOULDER_ENCODER_LOWER_LIMIT && 
-    //  o_control.getShoulderSpeed() < 0){
-//
-    //  shoulder.set(o_control.getRightY() * 0.2);
-    //}
-    //else{
-    //  shoulder.set(0);
-    //}
-
-
-
-    //if(
-    //  //elbow_encoder.getPosition() <= RobotMap.ELBOW_ENCODER_UPPER_LIMIT &&
-    //  o_control.getElbowSpeed() > 0){
-    //  elbow.set(o_control.getRightY() * 0.2);
-    //}
-    //else if(
-    //  //elbow_encoder.getPosition() >= RobotMap.ELBOW_ENCODER_LOWER_LIMIT &&
-    //  o_control.getElbowSpeed() < 0){
-    //  elbow.set(o_control.getRightY() * 0.2);
-    //}
-    //else{
-    //  elbow.set(0);
-    //}
-     
-
-    // Elevator 
-    //if(e_top_limit.get() && o_control.getElbowSpeed() > 0){
-    //  e_motors.set(0);
-    //  //e_motors.set(o_control.getElbowSpeed() * 0.5 + 0.05);
-    //}
-    //else if(e_bottom_limit.get() && o_control.getElbowSpeed() < 0){
-    //  e_motors.set(0);
-    //}
-    //else{
-    e_motors.set(o_control.getElbowSpeed() * 0.5);
-    //}
-    
   }
 
 

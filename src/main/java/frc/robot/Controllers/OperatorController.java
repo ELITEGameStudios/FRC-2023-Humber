@@ -37,37 +37,26 @@ public class OperatorController extends XboxController {
  * POV 270:
  */
 
- public OperatorController(int port){
-    super(port);
- }
+   public OperatorController(int port){
+      super(port);
+   }
 
- public boolean toggleLeftIntake(){
-    return getLeftBumperPressed();
- }
- public boolean toggleRightIntake(){
-    return getRightBumperPressed();
- }
+   public boolean RetrieveIntake(){
+      return getLeftBumper();
+   }
+   public boolean ReleaseIntake(){
+     return getRightBumper();
+   }  
 
- public double getElbowSpeed(){
-    return getLeftY();
- }
+   public double RotateIntake(){
+      return getRightY();
+   }
 
- public double getShoulderSpeed(){
-    return getRightY();
- }
 
- public double isElevatorDown(){
-    return getRightTriggerAxis();
- }
-
- public double isElevatorUp(){
-    return getLeftTriggerAxis();
- }
-
- public boolean setArmUpBind(){
-    return getYButton();
- }
- public boolean setArmDownBind(){
-    return getAButton();
- }
+   public boolean setArmUpBind(){
+      return getYButton();
+   }
+   public boolean setArmDownBind(){
+      return getAButton();
+   }
 }
